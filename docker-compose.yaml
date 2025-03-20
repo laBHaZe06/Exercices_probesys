@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: probesys_db
+    volumes:
+      - probesys_db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: probesys_exo
+    restart: always
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin:latest  
+    container_name: probesys_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  ror:
+    build: ./app
+    container_name: probesys_app
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
+    volumes:
+      - ./app:/app
+      - ./app/config/database.yml:/app/config/database.yml
+    environment:
+      DB_HOST: db
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  probesys_db:
