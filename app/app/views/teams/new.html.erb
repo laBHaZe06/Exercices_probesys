@@ -1,0 +1,19 @@
+<h1>New Team</h1>
+
+<%= form_with model: @team do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :town %>
+    <%= form.text_field :town %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
+<%= debug @team %>
+<%= link_to "Back", teams_path %>

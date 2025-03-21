@@ -27,12 +27,12 @@ services:
   ror:
     build: ./app
     container_name: probesys_app
-    command: bundle exec rails server -b 0.0.0.0 -p 3000
+    command: bash -c "bin/rails db:migrate && bundle exec rails server -b 0.0.0.0 -p 3000"
     volumes:
-      - ./app:/app
-      - ./app/config/database.yml:/app/config/database.yml
+      - ./app:/rails
     environment:
-      DB_HOST: db
+      - DB_HOST=db
+      - RAILS_ENV=development
     ports:
       - "3000:3000"
     depends_on:
