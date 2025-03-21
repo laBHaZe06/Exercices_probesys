@@ -1,0 +1,18 @@
+<%= form_with model: @player do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :position, "Position" %>
+    <%= form.select :position, ["Heal", "Tank", "DPS"] %>
+  </div>
+  <div>
+    <%= form.label :team_id, "Team" %>
+    <%= form.collection_select :team_id, Team.all, :id, :name, prompt: "Select a team" %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

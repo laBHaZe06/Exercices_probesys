@@ -4,6 +4,8 @@
   <% @teams.each do |team| %>
     <div>
       <%= team.name %> | <%= team.town %>
+      <%= link_to "Show", team_path(team) %>
+      <%= link_to "Edit", edit_team_path(team) %>
     </div>
   <% end %>
 </div>
