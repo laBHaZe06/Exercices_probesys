@@ -1,11 +1,32 @@
+<div class="container">
 <h1>Teams</h1>
-<%= link_to "New team", new_team_path %>
-<div id="teams">
+<hr>
+<div class="mb-4 mt-3">
+  <div class="row col-8">
+      <div class="col-4">
+      <%= link_to "Back", tournaments_path, class: "btn btn-secondary rounded-3 shadow-sm mt-5" %>
+      </div>
+      <div class="col-4">
+      <%= link_to "New team", new_team_path, class: "btn btn-success rounded-3 shadow-sm mt-5" %>
+      </div>
+  </div>
+</div>
+
+<div id="teams col-lg-10 mt-1 mb-1 mx-auto">
   <% @teams.each do |team| %>
-    <div>
+    <div class="row">
+      <div class="col-6 mb-2">
       <%= team.name %> | <%= team.town %>
-      <%= link_to "Show", team_path(team) %>
-      <%= link_to "Edit", edit_team_path(team) %>
+      </div>
+      <div class="col-3 mb-2">
+      <%= link_to "Show", team_path(team) ,class: "btn btn-sm btn-info" %>
+      </div>
+      <div class="col-3 mb-2">
+      <%= link_to "Edit", edit_team_path(team) ,class: "btn btn-sm btn-warning" %>
+      </div>
+      <hr>
     </div>
   <% end %>
 </div>
+</div>
+

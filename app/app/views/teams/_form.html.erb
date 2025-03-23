@@ -1,15 +1,3 @@
-<%= form_with model: @team do |form| %>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div class="field">
-    <%= form.label :town %>
-    <%= form.text_field :town %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
-<% end %>
+<div class="container mt-4">
+  <%= team_form(@team) %>
+</div>

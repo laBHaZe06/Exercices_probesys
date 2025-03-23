@@ -1,3 +1,5 @@
 class Team < ApplicationRecord
-    has_many :players, dependent: :destroy
+    belongs_to :tournament, optional: true
+    has_many :players
+
 end

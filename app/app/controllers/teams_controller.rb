@@ -14,9 +14,10 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
-      redirect_to team_path(@team), notice: "Team created successfully."
+      flash[:notice] = " ✅ Team created successfully."
+      redirect_to team_path(@team)
     else
-      render new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -29,6 +30,18 @@ class TeamsController < ApplicationController
       redirect_to @team
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @team = Team.find(params[:id])
+    if @team.destroy
+      flash[:notice] = " ✅ Team deleted successfully."
+      redirect_to teams_path
+    else
+      Rails.logger.error "❌ Team deletion failed: #{@team.errors.full_messages.join(", ")}"
+      flash.now[:alert] = @team.errors.full_messages.join(", ")
+      render new, status: :unprocessable_entity
     end
   end
 

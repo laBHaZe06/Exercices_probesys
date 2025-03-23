@@ -1,0 +1,82 @@
+<div class="container">
+    <%= link_to "Back to Home", "/" , class: "btn btn-sm btn-secondary mb-2" %>
+    <%= link_to "Back to Tournaments", tournaments_path , class: "btn btn-sm btn-secondary mb-2" %>
+
+    <h1 class="text-center">Results</h1>
+    <hr>
+
+    <div id="loading-screen" class="loading-screen">
+    <div class="spinner"></div>
+        <p> 🚀 The tournament is in progress, the results are coming in 🚀</p>
+    </div>
+
+   
+
+    <div class="justify-content-center text-center">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Équipe</th>
+                    <th>Points</th>
+                    <th>Kill Reçu</th>
+                    <th>Kill Marqués</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @classement %>
+                <% @classement.each do |team, data| %>
+                    <tr>
+                        <td><%= team.name %></td>
+                        <td><%= data[:points] %></td>
+                        <td><%= data[:kills_received] %></td>
+                        <td><%= data[:kills_scored] %></td>
+                    </tr>
+                <% end %>
+                <% else %>
+                    <tr>
+                        <td colspan="4">No result for the moment...</td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+        document.getElementById("loading-screen").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        }, 2000); // Attendre 2 secondes
+    });
+</script>
+
+<style>
+    .loading-screen {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(195, 220, 245, 0.94);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(35, 57, 85, 0.7);
+        border-top-color:rgba(74, 228, 255, 0.8);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>

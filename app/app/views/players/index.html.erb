@@ -1,11 +1,32 @@
-<h1>Players</h1>
-<%= link_to "New player", new_player_path %>
-<div id="players">
-  <% @players.each do |player| %>
-    <div>
-      <%= player.name %> | <%= player.position %> | <%= player.team.name if player.team %>
-      <%= link_to "Show", player_path(player) %>
-      <%= link_to "Edit", edit_player_path(player) %>
+<div class="container">
+  <h1>Players</h1>
+  <hr>
+
+  <div class="mb-4 mt-3">
+    <div class="row col-8">
+      <div class="col-4">
+        <%= link_to "Back", tournaments_path, class: "btn btn-secondary rounded-3 shadow-sm mt-5" %>
+      </div>
+      <div class="col-4">
+        <%= link_to "New player", new_player_path, class: "btn btn-primary rounded-3 shadow-sm mt-5" %>
+      </div>
     </div>
-  <% end %>
+  </div>
+
+  <div id="players" class="col-lg-10 mt-1 mb-1 mx-auto">
+    <% @players.each do |player| %>
+      <div class="row align-items-center">
+        <div class="col-6 mb-2">
+          <%= player.name %> | <%= player.position %> | <%= player.team.name if player.team %>
+        </div>
+        <div class="col-3 mb-2">
+          <%= link_to "Show", player_path(player), class: "btn btn-sm btn-info" %>
+        </div>
+        <div class="col-3 mb-2">
+          <%= link_to "Edit", edit_player_path(player), class: "btn btn-sm btn-warning" %>
+        </div>
+        <hr>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Matches</h1>
+  <hr>
+
+  <div class="mb-4 mt-3">
+    <div class="row col-8">
+      <div class="col-4">
+        <%= link_to "Back", tournaments_path, class: "btn btn-secondary rounded-3 shadow-sm mt-5" %>
+      </div>
+    </div>
+  </div>
+
+  <div id="matches" class="col-lg-10 mt-1 mb-1 mx-auto">
+    <% @matches.each do |match| %>
+      <div class="row align-items-center">
+        <div class="col-6 mb-2">
+          <%= match.team1.name if match.team1 %> ( <%= match.team1_score %> )  
+          vs  
+          <%= match.team2.name if match.team2 %> ( <%= match.team2_score %> )
+        </div>
+        <div class="col-3 mb-2">
+          <%= link_to "Show", match_path(match), class: "btn btn-sm btn-info" %>
+        </div>
+        <hr>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_21_134149) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_23_195956) do
   create_table "matches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "team1_id"
     t.bigint "team2_id"
@@ -38,6 +38,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_134149) do
     t.string "town"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tournament_id"
+    t.index ["tournament_id"], name: "index_teams_on_tournament_id"
   end
 
   create_table "tournaments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -52,4 +54,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_134149) do
   add_foreign_key "matches", "teams", column: "team2_id"
   add_foreign_key "matches", "tournaments"
   add_foreign_key "players", "teams"
+  add_foreign_key "teams", "tournaments"
 end
