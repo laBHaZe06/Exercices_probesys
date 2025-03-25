@@ -17,7 +17,7 @@ class PlayersController < ApplicationController
             redirect_to player_path(@player), notice: "Player created successfully."
         else
             flash.now[:alert] = @player.errors.full_messages.join(", ")
-            render new, status: :unprocessable_entity
+            render :new, status: :unprocessable_entity
         end
     end
 
