@@ -37,7 +37,7 @@ class MatchesController < ApplicationController
     
     def destroy
         if @match.destroy
-        flash[:notice] = " ✅ Match deleted successfully."
+        flash.now[:notice] = " ✅ Match deleted successfully."
         redirect_to matches_path
         else
         flash.now[:alert] = @match.errors.full_messages.join(", ")

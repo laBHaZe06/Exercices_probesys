@@ -1,0 +1,15 @@
+<h1><%= @match.tournament.name %></h1>
+
+<p>
+<strong>Match</strong>
+        <%=  @match.team1.name %> 
+        ( <%=  @match.team1_score %> )    
+        vs  
+        <%=  @match.team2.name %> 
+        ( <%=  @match.team2_score %> )
+</p>
+
+
+<%= link_to "Back", matches_path, class: "btn btn-sm btn-secondary" %>
+
+<%= link_to "Delete", @match, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>

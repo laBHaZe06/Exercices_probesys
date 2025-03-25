@@ -10,5 +10,6 @@
 </p>
 
 
-<%= link_to "Back", players_path %>
-<%= link_to "Edit", edit_player_path(@player) %>
+<%= link_to "Back", players_path, class: "btn btn-sm btn-secondary" %>
+<%= link_to "Edit", edit_player_path(@player), class: "btn btn-sm btn-warning" %>
+<%= link_to "Delete", @player, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
